@@ -53,10 +53,10 @@ void *thread_function(void *arg) { //명령어를 처리할 스레드
 		else if (!strcmp(bufmsg, "ip_list\n")) //명령어 처리
 			for (i = 0; i < num_user; i++)
 				printf("%s\n", ip_list[i]);
-		else if (!strcmp(bufmsg, "admin\n")){//명령어 처리
-			scanf("%s",&name);
+		else if (!strcmp(bufmsg, "admin\n")){//admin 설정부분
+			scanf("%s",&name);//admin 권한을 변경할 user name
 			for (i = 0; i < num_user; i++)
-				send(clisock_list[i], name, MAXLINE, 0);
+				send(clisock_list[i], name, MAXLINE, 0);//user들의 소켓으로 name을 전송
 		}
 		else //예외 처리
 			printf("해당 명령어가 없습니다.help를 참조하세요.\n");

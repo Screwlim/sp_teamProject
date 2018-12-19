@@ -53,16 +53,17 @@ int main(int argc, char *argv[]) {
 			if ((nbyte = recv(s, bufmsg, MAXLINE, 0)) > 0) {
 				bufmsg[nbyte] = 0;
 				write(1, "\033[0G", 4);		//커서의 X좌표를 0으로 이동
+				//admin 권한변경,server로 전송받은 name과 client의 name 비교
 				if(!strcmp(bufmsg,argv[3])){
 					if(admin == 1)
-						admin =0;
+						admin =0;//조교권한
 					else
-						admin =1;
+						admin =1;//학생권한
 					continue;
 				}
 				printf("%s", bufmsg);		//메시지 출력
 				fprintf(stderr, "\033[1;32m");	//글자색을 녹색으로 변경
-				fprintf(stderr, "%s%d>", argv[3],admin);//내 닉네임 출력
+				fprintf(stderr, "%s%d>", argv[3],admin);//내 닉네임 출력//뒤에정수는권한
 
 			}
 		}
