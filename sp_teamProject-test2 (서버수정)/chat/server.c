@@ -54,6 +54,7 @@ void *thread_function(void *arg) { //명령어를 처리할 스레드
 			for (i = 0; i < num_user; i++)
 				printf("%s\n", ip_list[i]);
 		else if (!strcmp(bufmsg, "admin\n")){//명령어 처리
+			printf("admin change who? : ");
 			scanf("%s",&name);
 			for (i = 0; i < num_user; i++)
 				send(clisock_list[i], name, MAXLINE, 0);

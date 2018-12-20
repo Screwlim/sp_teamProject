@@ -13,6 +13,7 @@
 #define MAXLINE     1000
 #define NAME_LEN    20
 
+int id = 0;//0은 학생 1은 관리자
 char *EXIT_STRING = "exit";
 // 소켓 생성 및 서버 연결, 생성된 소켓리턴
 int tcp_connect(int af, char *servip, unsigned short port);
@@ -25,14 +26,10 @@ int main(int argc, char *argv[]) {
 	int maxfdp1;	// 최대 소켓 디스크립터
 	int s;		// 소켓
 	int namelen;	// 이름의 길이
+	char severip[];
 	fd_set read_fds;
 	time_t ct;
 	struct tm tm;
-
-	if (argc != 4) {
-		printf("사용법 : %s sever_ip  port name \n", argv[0]);
-		exit(0);
-	}
 
 	s = tcp_connect(AF_INET, argv[1], atoi(argv[2]));
 	if (s == -1)
@@ -77,6 +74,7 @@ int main(int argc, char *argv[]) {
 	} // end of while
 }
 
+//tcp연결
 int tcp_connect(int af, char *servip, unsigned short port) {
 	struct sockaddr_in servaddr;
 	int  s;
